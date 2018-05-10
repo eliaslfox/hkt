@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 10ce0fb177fd706da5422c8908d7a23cd17cfd3b9bb53ac7c422d2ee075a1e53
+-- hash: 3d540efda0d046b834eb3065d5ea07eb9c0eef0313d49eb0b69c48bab4aa08c4
 
 name:           hkt
 version:        0.0.1
@@ -18,6 +18,8 @@ build-type:     Simple
 cabal-version:  >= 1.10
 
 extra-source-files:
+    CHANGELOG.md
+    LICENSE
     README.md
 
 flag reduce-core-output

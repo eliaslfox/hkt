@@ -9,6 +9,8 @@ maintainer:          eliaslfox@gmail.com
 category:            web
 extra-source-files:
   - README.md
+  - CHANGELOG.md
+  - LICENSE
 
 dependencies:
   - base >= 4.7 && < 5

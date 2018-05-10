@@ -28,7 +28,6 @@ default-extensions:
   - FlexibleInstances
   - NoImplicitPrelude
   - DeriveAnyClass
-  - KindSignatures
 
 library:
   source-dirs:      src
@@ -39,6 +38,10 @@ tests:
     default-extensions:
       - DeriveGeneric
       - DerivingStrategies
+      - KindSignatures
+      - OverloadedStrings
+      - StandaloneDeriving
     dependencies:
       - hkt
       - text
+      - hspec

@@ -3,7 +3,7 @@ module HKT.Merge (Merge, merge) where
 import Protolude
 
 import HKT.Type (ID)
-import GHC.Generics (Generic, Rep, M1(M1), K1(K1), V1, U1, from, to, (:*:)((:*:)), (:+:)(L1, R1))
+import GHC.Generics (Generic, Rep, M1(M1), K1(K1), V1, U1, from, to, (:*:)((:*:)))
 import qualified Data.Maybe
 
 class Merge a where

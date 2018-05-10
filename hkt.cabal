@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 74b903a3ec94059eecb55ebe4fededc1c33aa7c6a2ed0e3ee0f43418b03ebfa4
+-- hash: fd2b9764867c97be116c08a111e343e5dfa9b87a2b4ff62b49045ee2c7b4af4e
 
 name:           hkt
 version:        0.1.0.0
@@ -30,7 +30,7 @@ library
       Paths_hkt
   hs-source-dirs:
       src
-  default-extensions: TypeFamilies DefaultSignatures MultiParamTypeClasses FlexibleContexts LambdaCase EmptyCase TypeOperators FlexibleInstances NoImplicitPrelude DeriveAnyClass KindSignatures
+  default-extensions: TypeFamilies DefaultSignatures MultiParamTypeClasses FlexibleContexts LambdaCase EmptyCase TypeOperators FlexibleInstances NoImplicitPrelude DeriveAnyClass
   ghc-options: -Wall
   build-depends:
       base >=4.7 && <5
@@ -42,11 +42,12 @@ test-suite main
   main-is: tests/Main.hs
   other-modules:
       Paths_hkt
-  default-extensions: TypeFamilies DefaultSignatures MultiParamTypeClasses FlexibleContexts LambdaCase EmptyCase TypeOperators FlexibleInstances NoImplicitPrelude DeriveAnyClass KindSignatures DeriveGeneric DerivingStrategies
+  default-extensions: TypeFamilies DefaultSignatures MultiParamTypeClasses FlexibleContexts LambdaCase EmptyCase TypeOperators FlexibleInstances NoImplicitPrelude DeriveAnyClass DeriveGeneric DerivingStrategies KindSignatures OverloadedStrings StandaloneDeriving
   ghc-options: -Wall
   build-depends:
       base >=4.7 && <5
     , hkt
+    , hspec
     , protolude
     , text
   default-language: Haskell2010

@@ -2,10 +2,10 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d3be797e4e83efb6550840f0b1305a47ab326488b7a80e372c9c38b4f94324e0
+-- hash: 10ce0fb177fd706da5422c8908d7a23cd17cfd3b9bb53ac7c422d2ee075a1e53
 
 name:           hkt
-version:        0.1.0.0
+version:        0.0.1
 synopsis:       A library for higher kinded types.
 description:    A library for building and manipulating higher kinded data types.
 category:       web
@@ -19,6 +19,11 @@ cabal-version:  >= 1.10
 
 extra-source-files:
     README.md
+
+flag reduce-core-output
+  description: Reduce the amount of core outputted by inspection-testing
+  manual: True
+  default: False
 
 library
   exposed-modules:
@@ -43,7 +48,7 @@ test-suite main
   other-modules:
       Paths_hkt
   default-extensions: TypeFamilies DefaultSignatures MultiParamTypeClasses FlexibleContexts LambdaCase EmptyCase TypeOperators FlexibleInstances NoImplicitPrelude DeriveAnyClass DeriveGeneric DerivingStrategies KindSignatures OverloadedStrings StandaloneDeriving TemplateHaskell NamedFieldPuns
-  ghc-options: -Wall -dsuppress-idinfo -dsuppress-coercions -dsuppress-type-applications -dsuppress-module-prefixes -dsuppress-type-signatures -dsuppress-uniques
+  ghc-options: -Wall
   build-depends:
       base >=4.7 && <5
     , hkt
@@ -51,4 +56,6 @@ test-suite main
     , inspection-testing
     , protolude
     , text
+  if flag(reduce-core-output)
+    ghc-options: -dsuppress-idinfo -dsuppress-coercions -dsuppress-type-applications -dsuppress-module-prefixes -dsuppress-type-signatures -dsuppress-uniques
   default-language: Haskell2010

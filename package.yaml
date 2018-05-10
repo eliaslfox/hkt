@@ -1,0 +1,44 @@
+name:                hkt
+version:             0.1.0.0
+synopsis:            A library for higher kinded types.
+description:         A library for building and manipulating higher kinded data types.
+homepage:            https://github.com/eliaslfox/hkt#readme
+license:             BSD3
+author:              Elias Lawson-Fox
+maintainer:          eliaslfox@gmail.com
+category:            web
+extra-source-files:
+  - README.md
+
+dependencies:
+  - base >= 4.7 && < 5
+  - protolude
+
+ghc-options:
+  - -Wall
+
+default-extensions:
+  - TypeFamilies
+  - DefaultSignatures
+  - MultiParamTypeClasses
+  - FlexibleContexts
+  - LambdaCase
+  - EmptyCase
+  - TypeOperators
+  - FlexibleInstances
+  - NoImplicitPrelude
+  - DeriveAnyClass
+  - KindSignatures
+
+library:
+  source-dirs:      src
+
+tests:
+  main:
+    main: tests/Main.hs
+    default-extensions:
+      - DeriveGeneric
+      - DerivingStrategies
+    dependencies:
+      - hkt
+      - text

@@ -1,5 +1,5 @@
 name:                hkt
-version:             0.1.0.0
+version:             0.0.1
 synopsis:            A library for higher kinded types.
 description:         A library for building and manipulating higher kinded data types.
 homepage:            https://github.com/eliaslfox/hkt#readme

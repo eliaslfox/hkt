@@ -41,7 +41,18 @@ tests:
       - KindSignatures
       - OverloadedStrings
       - StandaloneDeriving
+      - TemplateHaskell
+      - NamedFieldPuns
     dependencies:
       - hkt
       - text
       - hspec
+      - inspection-testing
+    ghc-options:
+      - -dsuppress-idinfo
+      - -dsuppress-coercions
+      - -dsuppress-type-applications
+      - -dsuppress-module-prefixes
+      - -dsuppress-type-signatures
+      - -dsuppress-uniques
+

@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -O -fplugin Test.Inspection.Plugin #-}
+
 module Main where
 
 import Protolude hiding (Product)
@@ -5,13 +7,14 @@ import Protolude hiding (Product)
 import GHC.Generics (Generic)
 import Data.Text (Text)
 import Test.Hspec
+import Test.Inspection (inspect, (===))
+import qualified Data.Maybe
 
 import HKT (HKT, ID, Merge, Squash, squash, merge)
 
 data Empty (a :: * -> *)
     deriving stock Generic
-    deriving anyclass (Squash, Merge)
-
+    deriving anyclass (Squash, Merge) 
 data One (a :: * -> *) = One
     deriving stock Generic
     deriving anyclass (Squash, Merge)
@@ -32,6 +35,22 @@ data Sum (a :: * -> *)
     | SumRight (HKT a Text)
     deriving stock Generic
     deriving anyclass Squash
+
+squash1, squash2 :: Product Maybe -> Maybe (Product ID)
+squash1 = squash
+squash2 Product { first', second' } = 
+    Product <$> first' <*> second'
+
+inspect $ 'squash1 === 'squash2
+
+merge1, merge2 :: Product ID -> Product Maybe -> Product ID
+merge1 = merge
+merge2 (Product pf pl) (Product p1f p1l) =
+    Product
+        (Data.Maybe.fromMaybe pf p1f)
+        (Data.Maybe.fromMaybe pl p1l)
+
+inspect $ 'merge1 === 'merge2
 
 main :: IO ()
 main = 

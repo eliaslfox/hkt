@@ -1,4 +1,6 @@
-{-# OPTIONS_GHC -O -fplugin Test.Inspection.Plugin #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell   #-}
+{-# LANGUAGE CPP               #-}
 
 module Main where
 
@@ -7,8 +9,11 @@ import Protolude hiding (Product)
 import GHC.Generics (Generic)
 import Data.Text (Text)
 import Test.Hspec
+
+#ifdef INSPECTION_TESTING
 import Test.Inspection (inspect, (===))
 import qualified Data.Maybe
+#endif
 
 import HKT (HKT, ID, Merge, Squash, squash, merge)
 
@@ -30,12 +35,13 @@ data Product (a :: * -> *) =
 deriving instance Show (Product ID)
 deriving instance Eq (Product ID)
 
-data Sum (a :: * -> *) 
+data SumType (a :: * -> *) 
     = SumLeft (HKT a Int) 
     | SumRight (HKT a Text)
     deriving stock Generic
     deriving anyclass Squash
 
+#ifdef INSPECTION_TESTING
 squash1, squash2 :: Product Maybe -> Maybe (Product ID)
 squash1 = squash
 squash2 Product { first', second' } = 
@@ -51,6 +57,17 @@ merge2 (Product pf pl) (Product p1f p1l) =
         (Data.Maybe.fromMaybe pl p1l)
 
 inspect $ 'merge1 === 'merge2
+
+squash3, squash4 :: SumType Maybe -> Maybe (SumType ID)
+squash3 = squash
+squash4 s =
+  case s of
+    SumLeft (Just x) -> Just (SumLeft x)
+    SumRight (Just x) -> Just (SumRight x)
+    _ -> Nothing
+
+inspect $ 'squash3 === 'squash4
+#endif
 
 main :: IO ()
 main = 

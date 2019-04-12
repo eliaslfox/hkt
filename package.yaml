@@ -41,9 +41,7 @@ tests:
       - DeriveGeneric
       - DerivingStrategies
       - KindSignatures
-      - OverloadedStrings
       - StandaloneDeriving
-      - TemplateHaskell
       - NamedFieldPuns
     dependencies:
       - hkt
@@ -59,8 +57,7 @@ tests:
           - -dsuppress-type-applications
           - -dsuppress-module-prefixes
           - -dsuppress-type-signatures
-          - -dsuppress-uniques
-
+  
 flags:
   reduce-core-output:
     description: Reduce the amount of core outputted by inspection-testing
